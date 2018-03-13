@@ -1,0 +1,32 @@
+import datetime
+monthlist=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+#print monthlist[1]
+now = datetime.datetime.now()
+#print monthlist[now.month-1]
+
+period="JAN17-FEB18"#raw_input("Period:")
+
+
+monthdict={'JAN':0,'FEB':1,'MAR':2,'APR':3,'MAY':4,'JUN':5,'JUL':6,'AUG':7,'SEP':8,'OCT':9,'NOV':10,'DEC':11}
+
+s_m=period[0:3]
+s_y=period[3:5]
+e_m=period[6:9]
+e_y=period[9:11]
+rank_m_list=[]
+#rank_m_list.append(s_m+s_y)
+cur_y=s_y
+cur_m=s_m
+s_s=cur_m+cur_y
+e_s=e_m+e_y
+while(s_s!=e_s):
+	if(cur_m=="DEC"):
+		cur_y=str(int(cur_y)+1)
+	rank_m_list.append(s_s)
+	temp_v=(int(monthdict[cur_m]) + 1)%12
+	cur_m=monthlist[temp_v]
+	s_s=cur_m+cur_y
+
+print rank_m_list
+print s_s==e_s
+
